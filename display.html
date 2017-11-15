@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Web Programming CSci 130</title>
+</head>
+<body>
+
+<script>
+
+let index=0;
+let indexmax=0;
+var mydata;
+
+function goPrevious()
+{
+    if (index!=-1) {
+	if (index==0)
+		index=0;
+	else
+		index--;
+	//	alert("Previous");
+	FillForm(mydata[index]);
+	}
+}
+
+function goNext()
+{
+	if (index!=-1) {
+	if (index==indexmax-1)
+		index=indexmax-1;
+	else
+		index++;
+	//	alert("Next");
+	FillForm(mydata[index]);
+	}
+}
+
+function Add() {
+
+indexmax++;
+index=indexmax-1;
+
+//mydata[index]=mydata[2];
+mydata[index]=JSON.parse(JSON.stringify(mydata[2]));
+
+mydata[index]['first_name']="";
+mydata[index]['last_name']="";
+mydata[index]['address']="";
+mydata[index]['dob']="";
+mydata[index]['id']="";
+mydata[index]['current_gpa']="";
+mydata[index]['current_units']="";
+
+EmptyForm();
+
+}
+
+
+function Saverecord() {
+var v=document.getElementById("first_name");
+mydata[index]['first_name']=v.value;
+var v=document.getElementById("last_name");
+mydata[index]['last_name']=v.value;
+var v=document.getElementById("address");
+mydata[index]['address']=v.value;
+var v=document.getElementById("dob");
+mydata[index]['dob']=v.value;
+var v=document.getElementById("idnum");
+mydata[index]['id']=v.value;
+var v=document.getElementById("gpa");
+mydata[index]['current_gpa']=v.value;
+var v=document.getElementById("units");
+mydata[index]['current_units']=v.value;
+
+}
+
+
+var saverequest;
+
+function Savefile() {
+
+    saverequest = new XMLHttpRequest();
+    if (!saverequest) {
+      alert('Cannot create an XMLHTTP instance');
+      return false;
+    }
+
+    str=JSON.stringify(mydata);
+	// alert(str);
+
+    saverequest.onreadystatechange = alertContents;
+    saverequest.open('POST','savefile.php');
+  //  saverequest.setRequestHeader('Content-Type','application/json');
+	saverequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+   // str="545455";
+    saverequest.send('mynewdata=' + encodeURIComponent(str) );
+}
+
+
+function alertContents() {
+  try {
+    if (saverequest.readyState === XMLHttpRequest.DONE) {
+      if (saverequest.status === 200) {
+		//	var response = JSON.parse(saverequest.responseText);
+			alert('Saved file');
+	//	alert(saverequest.responseText);
+	  } else {
+        alert('There was a problem with the request.');
+      }
+    }
+  }
+  catch( e ) {
+    alert('Caught Exception: ' + e.description);
+  }
+}
+
+
+function EmptyForm() {
+var v=document.getElementById("first_name");
+v.value="";
+var v=document.getElementById("last_name");
+v.value="";
+var v=document.getElementById("address");
+v.value="";
+var v=document.getElementById("dob");
+v.value="";
+var v=document.getElementById("idnum");
+v.value="";
+var v=document.getElementById("gpa");
+v.value="";
+var v=document.getElementById("units");
+v.value="";
+
+var v=document.getElementById("vindex");
+v.value=index;
+
+}
+
+ function FillForm(jsonObj) {
+ // alert(index);
+ var v=document.getElementById("first_name");
+ v.value=jsonObj['first_name'];
+ var v=document.getElementById("last_name");
+ v.value=jsonObj['last_name'];
+ var v=document.getElementById("address");
+ v.value=jsonObj['address'];
+ var v=document.getElementById("dob");
+ v.value=jsonObj['dob'];
+ var v=document.getElementById("idnum");
+ v.value=jsonObj['id'];
+ var v=document.getElementById("gpa");
+ v.value=jsonObj['current_gpa'];
+ var v=document.getElementById("units");
+ v.value=jsonObj['current_units'];
+
+ var v=document.getElementById("vindex");
+v.value=index;
+
+
+ }
+
+function getitem(){
+    var requestURL = "mydatabase.json";
+    httprequest = new XMLHttpRequest();
+	httprequest.open('GET', requestURL);
+    // httprequest.responseType = 'json';
+    httprequest.send();
+	httprequest.onload = function() {
+    mydata = httprequest.responseText;
+	// alert(mydata);
+	mydata = JSON.parse(mydata);
+	// Now we have access the whole JSON file
+
+	indexmax=mydata.length;
+	if (indexmax>0) {
+		index=0;
+		//alert(mydata[0]);
+		FillForm(mydata[0]);
+    }
+	else
+		index=-1;
+
+	var v=document.getElementById("vindex");
+	v.value=index;
+}
+}
+
+</script>
+
+<h1>Student</h1>
+
+<!-- the main form -->
+<section>
+  First Name: <input type="text" id="first_name" value="">
+  <br>
+  Last Name: <input type="text" id="last_name">
+  <br>
+  Address: <input type="text" id="address">
+  <br>
+  DOB: <input type="text" id="dob">
+</section>
+
+<!-- navigation button -->
+<section>
+<button onclick="goPrevious()">Previous</button>
+<button onclick="goNext()">Next</button>
+<button onclick="Add()">Add</button>
+<button onclick="Savefile()">Save file</button>
+<button onclick="Saverecord()">Save record</button>
+</section>
+
+<body>
+<html>

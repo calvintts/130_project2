@@ -9,7 +9,9 @@
   	session_destroy();
   	unset($_SESSION['username']);
   	header("location: login.php");
+	
   }
+  
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,8 +43,9 @@
       <ul>
         <li><a href="display.php">Browse content</a></li>
         <li><a href="newitem.php">Add item</a></li>
+		</ul>
         <!--<li><a href="index.php?logout=1">Logout</a></li>-->
-<p> <a href="index.php?logout='1'" style="color: red;">Logout</a> </p>
+<p> <a href="index.php?logout='1'" name="logout" style="color: red;">Logout</a> </p>
 		
     <?php endif ?>
 </div>

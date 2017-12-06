@@ -4,7 +4,8 @@ $host = 'localhost';
 $user = 'root';
 $pass = '';
 $u = $_SESSION['username'];
-$sql = "SELECT * FROM car,items GROUP BY price";
+//$sql = "SELECT * FROM car,items";
+$sql = "SELECT * FROM items INNER JOIN car ON iid=cid";
 $records = mysqli_query($conn,$sql);
 ?>
 

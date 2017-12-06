@@ -21,6 +21,7 @@
 <section>
 <button onclick="newcar()">Add Car</button>
 <button onclick="newphone()">Add Phone</button>
+<button><a href="index.php">HOME page</a></button>
 <div id="form_input"></div>
 </section>
 

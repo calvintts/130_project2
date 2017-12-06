@@ -59,6 +59,22 @@ $car ="CREATE TABLE `car`(
 	name		VARCHAR(100)	NOT NULL 	)";
 	$conn->query($car);
 	
+$com ="CREATE TABLE `com`(
+	comid		INTEGER(4)		PRIMARY KEY PRIMARY KEY AUTO_INCREMENT,
+	name		VARCHAR(100)	NOT NULL ,
+	comment		TEXT(100)	NOT NULL	)";
+	$conn->query($com);
+
+if(isset($_POST['getComment'])){
+//$finalcomment=$pcomment."by".$username;
+$comm = mysqli_real_escape_string($conn, $_POST['comment']);
+$u=$_SESSION['username'];
+$qry = "INSERT INTO com(name,comment)
+VALUES ('$u','$comm');";
+mysqli_query($conn,$qry);
+
+}
+	
 if(isset($_POST['savephone'])){
 $pcomment = mysqli_real_escape_string($conn, $_POST['pcmt']);
 //$finalcomment=$pcomment."by".$username;

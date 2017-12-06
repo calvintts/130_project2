@@ -49,6 +49,7 @@ form, .content {
   background: #5F9EA0;
   border: none;
   border-radius: 5px;
+
 }
 .error {
   width: 92%; 
@@ -66,3 +67,24 @@ form, .content {
   border: 1px solid #3c763d;
   margin-bottom: 20px;
 }
+
+#l{color: green;
+	text-decoration: none;
+}
+.center {
+    margin: auto;
+    width: 8%;
+    border: 3px solid #73AD21;
+    padding: 9px;
+}
+#o{text-decoration: none;
+	}
+	
+#home
+{
+	text-decoration:none;
+	text-align:center;
+}
+table{text-align:center;}
+com{
+	text-align:center;}

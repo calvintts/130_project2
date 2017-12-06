@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" type="text/css" href="style.css">
 <meta charset="UTF-8" />
 <title>New Item</title>
 </head>
@@ -18,10 +19,11 @@
   }
 </script>
 <!-- navigation button -->
-<section>
-<button onclick="newcar()">Add Car</button>
-<button onclick="newphone()">Add Phone</button>
-<button><a href="index.php">HOME page</a></button>
+<section style="text-align:center;">
+<button class = "btn" id="home"  onclick="newcar()">Add Car</button>
+<button class = "btn" id="home"  onclick="newphone()">Add Phone</button>
+<a class = "btn" id="home" href="index.php">HOME page</a>
+<br>
 <div id="form_input"></div>
 </section>
 

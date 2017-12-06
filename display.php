@@ -5,24 +5,25 @@ $user = 'root';
 $pass = '';
 $u = $_SESSION['username'];
 //$sql = "SELECT * FROM car,items";
-$sql = "SELECT * FROM items JOIN car WHERE iid=cid";
+$sql = "SELECT * FROM items INNER JOIN car ON iid=cid";
 $records = mysqli_query($conn,$sql);
 $temp = "";
 ?>
+
 <html>
 <head>
 <title> Display </title>
-<style>
-</style>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+
 <section>
-  <button><a href="display.php">Display Car</a></button>
-  <button><a href="displayphone.php">Display Phone</a></button>
-  <button><a href="index.php">HOME page</a></button>
+  <button class="btn" ><a href="display.php">Display Car</a></button>
+  <button class="btn"><a href="displayphone.php">Display Phone</a></button>
+  <button class="btn"><a href="index.php">Home page</a></button>
   <div id="form_input"></div>
   </section>
-<form>
+
 
 <table id="tbl" width="600" border = "1" cellpadding="1" cellspacing="1">
 	<tr>
@@ -50,13 +51,24 @@ $temp = "";
 		echo "</tr>";
 	}
 	?>
-
+	
 </table>
-</form>
-		Comment: <input type="text" name="comm">
-    <div><button class="btn">Submit</button></div>
-		<div><button onclick="sort_price()">Sort By Price</button></div>
+
+<section>
+		<br><hr>
+		<br>Comment: <input name="comm" id="com">
+		<button onclick = "writeComm()" class="btn">Post</button><br>
+		
+	</section>
+	<br><button onclick = "sort_price()" class="btn">Sort By Price</button><br>
+	<br><div id="commen"></div><br>
     <script>
+	function writeComm(){
+		let x= document.getElementById('commen');
+		let out = document.getElementById('com').value;
+		x.innerHTML +="<div>"+out+"</div>"
+	}
+	
     function sort_price()
   {  document.getElementById('tbl').innerHTML = "<?php
     $qry="SELECT * FROM items JOIN car WHERE iid=cid ORDER BY price";

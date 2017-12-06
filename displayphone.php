@@ -19,7 +19,7 @@ $temp = "";
 <section>
   <button class="btn" id="home"><a href="display.php">Display Car</a></button>
   <button class="btn" id="home"><a href="displayphone.php">Display Phone</a></button>
-  <button class="btn" id="home"><a href="index.php">HOME page</a></button>
+  <button class="btn" id="home"><a href="index.php">Home page</a></button>
   <div id="form_input"></div>
   </section>
 
@@ -50,10 +50,11 @@ $temp = "";
 </table>
 
 <section>
-		Comment: <input type="text" name="comm">
-		<button>post</button>
+		<br><hr>
+		<br>Comment: <input type="text" name="comm">
+		<button class="btn"  id="home">Post</button>
 	</section>
-	<button onclick = "sort_price" class="btn">Sort By Price</button>
+	<br><button onclick = "sort_price()" class="btn">Sort By Price</button>
   <script>
   function sort_price()
   {

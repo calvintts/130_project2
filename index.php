@@ -40,15 +40,19 @@
     <!-- logged in user information -->
     <?php  if (isset($_SESSION['username'])) : ?>
     	<p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
-      <ul>
-        <li><a href="display.php">Browse content</a></li>
-        <li><a href="newitem.php">Add item</a></li>
-		</ul>
+        <li><a href="display.php" id="l">Browse content</a></li>
+        <li><a href="newitem.php" id = "l">Add item</a></li>
         <!--<li><a href="index.php?logout=1">Logout</a></li>-->
-<p> <a href="index.php?logout='1'" name="logout" style="color: red;">Logout</a> </p>
+
 		
     <?php endif ?>
 </div>
 		
 </body>
+<footer>
+<br>
+<div class="center">
+  <p> <a href="index.php?logout='1'" name="logout" id="o" style="color:black;">Logout</a> </p>
+</div>
+</footer>
 </html>

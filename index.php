@@ -1,5 +1,5 @@
-<?php
-  session_start();
+<?php 
+  session_start(); 
 
   if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "You must log in first";
@@ -27,8 +27,8 @@
   	<?php if (isset($_SESSION['success'])) : ?>
       <div class="error success" >
       	<h3>
-          <?php
-          	echo $_SESSION['success'];
+          <?php 
+          	echo $_SESSION['success']; 
           	unset($_SESSION['success']);
           ?>
       	</h3>
@@ -39,12 +39,13 @@
     <?php  if (isset($_SESSION['username'])) : ?>
     	<p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
       <ul>
-        <li><a href="display.html">Browse content</a></li>
+        <li><a href="display.php">Browse content</a></li>
         <li><a href="newitem.php">Add item</a></li>
-        <li><a href="index.php?logout=1">Logout</a></li>
-    	<p> <a href="index.php?logout='1'" style="color: red;">Logout</a> </p>
+        <!--<li><a href="index.php?logout=1">Logout</a></li>-->
+<p> <a href="index.php?logout='1'" style="color: red;">Logout</a> </p>
+		
     <?php endif ?>
 </div>
-
+		
 </body>
 </html>

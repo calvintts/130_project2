@@ -4,7 +4,7 @@ $host = 'localhost';
 $user = 'root';
 $pass = '';
 $u = $_SESSION['username'];
-$sql = "SELECT * FROM phone,Items WHERE username=$u GROUP BY price";
+$sql = "SELECT * FROM phone,items GROUP BY price";
 $records = mysqli_query($conn,$sql);
 ?>
 
@@ -15,6 +15,12 @@ $records = mysqli_query($conn,$sql);
 </style>
 </head>
 <body>
+<section>
+  <button><a href="display.php">Display Car</a></button>
+  <button><a href="displayphone.php">Display Phone</a></button>
+  <button><a href="index.php">HOME page</a></button>
+  <div id="form_input"></div>
+  </section>
 <form>
 
 <table width="600" border = "1" cellpadding="1" cellspacing="1">
@@ -32,14 +38,19 @@ $records = mysqli_query($conn,$sql);
 	while ($row = mysqli_fetch_assoc($records))
 	{
 		echo "<tr>";
-		echo "<td>".$row['username']."</td>";
+		echo "<td>".$row['name']."</td>";
 		echo "<td>".$row['color']."</td>";
-    echo "<td>".$row['price']."</td>";
-    echo "<td>".$row['brand']."</td>";
-    echo "<td>".$row['camera']."</td>";
-    echo "<td>".$row['comment']."</td>";
+		echo "<td>".$row['price']."</td>";
+		echo "<td>".$row['brand']."</td>";
+		echo "<td>".$row['camera']."</td>";
+		echo "<td>".$row['comment']."</td>";
 		echo "</tr>";
 	}?>
 </table>
 </form>
-<body>
+<section>
+		Comment: <input type="text" name="comm">
+		<button>post</button>
+	</section>
+</body>
+</html>

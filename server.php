@@ -67,9 +67,12 @@ $color = mysqli_real_escape_string($conn, $_POST['clr']);
 $price = mysqli_real_escape_string($conn, $_POST['price']);
 $camera = mysqli_real_escape_string($conn, $_POST['cam']);
 $pbrand = mysqli_real_escape_string($conn, $_POST['pbrand']);
-$qry = "INSERT INTO phone ,it(camera, brand, comment)
+$qry = "INSERT INTO phone(camera, brand, comment)
 VALUES ('$camera', '$pbrand', '$pcomment')";
+$qr = "INSERT INTO items(color, price)
+VALUES ('$color', '$price')";
 mysqli_query($conn,$qry);
+mysqli_query($conn,$qr);
 }
 //$db = mysqli_connect('localhost', 'root', '', 'registration');
 /////my code starts here
@@ -82,7 +85,10 @@ $cbrand = mysqli_real_escape_string($conn, $_POST['cbrand']);
 $year = mysqli_real_escape_string($conn, $_POST['year']);
 $qry = "INSERT INTO car (brand, year,horsepower, comment)
 VALUES ('$cbrand', '$year', '$hp','$ccomment')";
+$qr = "INSERT INTO items(color, price)
+VALUES ('$color', '$price')";
 mysqli_query($conn,$qry);
+mysqli_query($conn,$qr);
 }
 
 // REGISTER USER

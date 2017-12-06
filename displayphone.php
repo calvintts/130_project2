@@ -5,26 +5,26 @@ $user = 'root';
 $pass = '';
 $u = $_SESSION['username'];
 //$sql = "SELECT * FROM phone,items GROUP BY name";
-$sql = "SELECT * FROM items JOIN phone WHERE iid=pid";
+$sql = "SELECT * FROM items INNER JOIN phone ON iid=pid";
 $records = mysqli_query($conn,$sql);
+$temp = "";
 ?>
 
 <html>
 <head>
 <title> Phone display </title>
-<style>
-</style>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <section>
-  <button><a href="display.php">Display Car</a></button>
-  <button><a href="displayphone.php">Display Phone</a></button>
-  <button><a href="index.php">HOME page</a></button>
+  <button class="btn" id="home"><a href="display.php">Display Car</a></button>
+  <button class="btn" id="home"><a href="displayphone.php">Display Phone</a></button>
+  <button class="btn" id="home"><a href="index.php">HOME page</a></button>
   <div id="form_input"></div>
   </section>
-<form>
 
-<table id="ptbl"width="600" border = "1" cellpadding="1" cellspacing="1">
+
+<table id="tbl" width="600" border = "1" cellspacing="1">
 	<tr>
 	<th>Created By</th>
   <th>Color</th>
@@ -48,10 +48,12 @@ $records = mysqli_query($conn,$sql);
 		echo "</tr>";
 	}?>
 </table>
-</form>
+
+<section>
 		Comment: <input type="text" name="comm">
-		<button>Post</button>
-    <button onclick = "sort_price" class="btn">Sort By Price</button>
+		<button>post</button>
+	</section>
+	<button onclick = "sort_price" class="btn">Sort By Price</button>
   <script>
   function sort_price()
   {

@@ -5,10 +5,10 @@ $user = 'root';
 $pass = '';
 $u = $_SESSION['username'];
 //$sql = "SELECT * FROM car,items";
-$sql = "SELECT * FROM items INNER JOIN car ON iid=cid";
+$sql = "SELECT * FROM items JOIN car WHERE iid=cid";
 $records = mysqli_query($conn,$sql);
+$temp = "";
 ?>
-
 <html>
 <head>
 <title> Display </title>
@@ -24,7 +24,7 @@ $records = mysqli_query($conn,$sql);
   </section>
 <form>
 
-<table width="600" border = "1" cellpadding="1" cellspacing="1">
+<table id="tbl" width="600" border = "1" cellpadding="1" cellspacing="1">
 	<tr>
 	<th>Created By</th>
     <th>Color</th>
@@ -50,12 +50,33 @@ $records = mysqli_query($conn,$sql);
 		echo "</tr>";
 	}
 	?>
-	
+
 </table>
 </form>
-<section>
 		Comment: <input type="text" name="comm">
-		<button>post</button>
-	</section>
+    <div><button class="btn">Submit</button></div>
+		<div><button onclick="sort_price()">Sort By Price</button></div>
+    <script>
+    function sort_price()
+  {  document.getElementById('tbl').innerHTML = "<?php
+    $qry="SELECT * FROM items JOIN car WHERE iid=cid ORDER BY price";
+    $result=mysqli_query($conn,$qry);
+    $temp = "<tr><th>name</th><th>color</th><th>price</th><th>brand</th><th>year</th><th>horsepower</th><th>comment</th>";
+    while($row = (mysqli_fetch_assoc($result))){
+      $temp=$temp."<tr>".
+      "<td>".$row['name']."</td>"
+      ."<td>".$row['color']."</td>"
+      . "<td>".$row['price']."</td>"
+      . "<td>".$row['brand']."</td>"
+      . "<td>".$row['year']."</td>"
+      . "<td>".$row['horsepower']."</td>"
+      . "<td>".$row['comment']."</td>"
+      . "</tr>";
+      //  $temp = $temp."<td>".$row['name'] .
+      //   "</td><td>" . $row['color'] . "</td><td>".$row['price']."</td><td>".$row['brand']. "</td><td>".$row['year']. "</td><td>"."$row['horsepower']"."</tr>";  //$row['index'] the index here is a field name
+      }
+      $temp = $temp."</tr>";
+      echo $temp?>";}
+    </script>
 </body>
 </html>
